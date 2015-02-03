@@ -17,34 +17,34 @@ public class Main {
         String baseURL = "http://www.clubmonaco.com/product/index.jsp?productId=";
         String[] urls = {"45602436", "52816966" };
         PrintWriter out = new PrintWriter("output.txt");
-        PrintWriter priceChange = new PrintWriter("price change.txt");
+        PrintWriter priceChange = new PrintWriter("price change.csv");
 
         for(int i=0; i<urls.length; i++){
 
             Document doc = Jsoup.connect(baseURL + urls[i]).get();
 
-            Elements price = doc.getElementsByClass("money");
-            Element img = doc.getElementById("alternate-images");
+            Product product = new Product(doc);
+            String name = product.getName();
+            String price = product.getPrice();
 
-            out.println("Item Name: " + doc.title());
-            out.println("Price: " + price.text());
-            out.println("Image: "+ img.text());
-            out.println("URL: "+ baseURL + urls[i]);
-
-            System.out.println("Item Name: " + doc.title());
-            System.out.println("Price: " + price.text());
-            System.out.println("Image: "+ img.text());
+            out.println(name+ "," + price + "," + baseURL+urls[i]);
+            //TODO: for testing purpose, to delete after
+            System.out.println("Item Name: " + name);
+            System.out.println("Price: " + price);
             System.out.println("URL: " + baseURL + urls[i]);
 
 
-            if(price.text().length()> FIX_PRICE){
-                priceChange.println(doc.title());
-                priceChange.println(price.text());
-            }
+            Main.isPriceChanged(priceChange, name, price);
         }
 
         out.close();
         priceChange.close();
 
+    }
+        public static void isPriceChanged(PrintWriter priceChange, String name, String price) {
+        if(price.length()> FIX_PRICE){
+            priceChange.println(name);
+            priceChange.println(price);
+        }
     }
 }
