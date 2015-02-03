@@ -33,4 +33,9 @@ public class ProductTest {
         assertThat(product.getName(), is("Wayland Cardigan"));
     }
 
+    @Test
+    public void whenGetProductPriceShouldReturnProductPrice(){
+        assertThat(product.getPrice(), is("$329.00"));
+    }
+
 }

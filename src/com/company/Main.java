@@ -15,8 +15,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         String baseURL = "http://www.clubmonaco.com/product/index.jsp?productId=";
-        String[] urls = {"45602436", "52816966" };
-        PrintWriter out = new PrintWriter("output.txt");
+        String[] urls = {"45602436", "52816966", "53008816" };
+        PrintWriter out = new PrintWriter("output.csv");
         PrintWriter priceChange = new PrintWriter("price change.csv");
 
         for(int i=0; i<urls.length; i++){
