@@ -13,6 +13,8 @@ import java.io.PrintWriter;
  */
 public class Product {
 
+    private static int FIX_PRICE = 7;
+
     //TODO: ADD IMG AND URL
 
     private final String name;
@@ -32,5 +34,11 @@ public class Product {
     public String getPrice() {
         return price;
     }
+
+    public boolean isPriceChanged(){
+        return price.length()>FIX_PRICE;
+    }
+
+
 
 }

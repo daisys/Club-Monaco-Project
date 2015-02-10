@@ -2,24 +2,23 @@ package com.company;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 public class Main {
 
-    private static int FIX_PRICE = 7;
 
     public static void main(String[] args) throws IOException {
 
         String baseURL = "http://www.clubmonaco.com/product/index.jsp?productId=";
-        String[] urls = {"45602436", "52816966", "53008816" };
-        PrintWriter out = new PrintWriter("output.csv");
+        String[] urls = {"45602436", "52816966", "53008816"};
+        LocalDate currentDate = LocalDate.now();
+        PrintWriter out = new PrintWriter(currentDate + ".csv");
         PrintWriter priceChange = new PrintWriter("price change.csv");
 
-        for(int i=0; i<urls.length; i++){
+        for (int i = 0; i < urls.length; i++) {
 
             Document doc = Jsoup.connect(baseURL + urls[i]).get();
 
@@ -27,24 +26,18 @@ public class Main {
             String name = product.getName();
             String price = product.getPrice();
 
-            out.println(name+ "," + price + "," + baseURL+urls[i]);
-            //TODO: for testing purpose, to delete after
-            System.out.println("Item Name: " + name);
-            System.out.println("Price: " + price);
-            System.out.println("URL: " + baseURL + urls[i]);
+            out.println(name + "," + price + "," + baseURL + urls[i]);
 
+            if (product.isPriceChanged()) {
 
-            Main.isPriceChanged(priceChange, name, price);
+                priceChange.println(name);
+                priceChange.println(price);
+            }
+
         }
 
         out.close();
         priceChange.close();
 
-    }
-        public static void isPriceChanged(PrintWriter priceChange, String name, String price) {
-        if(price.length()> FIX_PRICE){
-            priceChange.println(name);
-            priceChange.println(price);
-        }
     }
 }
