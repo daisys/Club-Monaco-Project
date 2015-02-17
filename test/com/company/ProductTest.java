@@ -10,9 +10,6 @@ import java.io.IOException;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by daisyshih on 2/3/15.
- */
 public class ProductTest {
 
     public String url;

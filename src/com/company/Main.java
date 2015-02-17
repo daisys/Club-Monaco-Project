@@ -2,9 +2,7 @@ package com.company;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 
 public class Main {
@@ -13,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         String baseURL = "http://www.clubmonaco.com/product/index.jsp?productId=";
-        String[] urls = {"45602436", "52816966", "53008816"};
+        String[] urls = {"45602436","43893976","53008816", "52816966"};
         LocalDate currentDate = LocalDate.now();
 
         for (int i = 0; i < urls.length; i++) {
@@ -24,7 +22,7 @@ public class Main {
             String name = product.getName();
             String price = product.getPrice();
 
-            System.out.println(currentDate+ "," + name + "," + price + "," + baseURL + urls[i]);
+            System.out.println(currentDate + "," + name + "," + price + "," + baseURL + urls[i]);
 
         }
 

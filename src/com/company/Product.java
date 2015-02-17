@@ -1,19 +1,9 @@
 package com.company;
 
-import com.company.Main;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-/**
- * Created by daisyshih on 2/3/15.
- */
 public class Product {
-
-    private static int FIX_PRICE = 7;
 
     //TODO: ADD IMG AND URL
 
@@ -23,7 +13,13 @@ public class Product {
     public Product(Document doc) {
 
         this.name = doc.getElementById("product-information").child(0).text();
-        this.price = doc.getElementsByClass("money").text();
+
+        Element salePrice = doc.getElementsByClass("sale-price").first();
+        if(salePrice != null && salePrice.text().length()>0){
+            this.price = salePrice.text();
+        }else{
+            this.price = doc.getElementsByClass("money").text();
+        }
 
     }
 
