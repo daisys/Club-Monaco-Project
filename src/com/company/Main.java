@@ -15,8 +15,6 @@ public class Main {
         String baseURL = "http://www.clubmonaco.com/product/index.jsp?productId=";
         String[] urls = {"45602436", "52816966", "53008816"};
         LocalDate currentDate = LocalDate.now();
-        PrintWriter out = new PrintWriter(currentDate + ".csv");
-        PrintWriter priceChange = new PrintWriter("price change.csv");
 
         for (int i = 0; i < urls.length; i++) {
 
@@ -26,18 +24,9 @@ public class Main {
             String name = product.getName();
             String price = product.getPrice();
 
-            out.println(name + "," + price + "," + baseURL + urls[i]);
-
-            if (product.isPriceChanged()) {
-
-                priceChange.println(name);
-                priceChange.println(price);
-            }
+            System.out.println(currentDate+ "," + name + "," + price + "," + baseURL + urls[i]);
 
         }
-
-        out.close();
-        priceChange.close();
 
     }
 }

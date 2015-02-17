@@ -35,10 +35,4 @@ public class Product {
         return price;
     }
 
-    public boolean isPriceChanged(){
-        return price.length()>FIX_PRICE;
-    }
-
-
-
 }
