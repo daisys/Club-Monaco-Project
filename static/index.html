@@ -10,7 +10,6 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.poptrox.min.js"></script>
 		<script src="js/skel.min.js"></script>
@@ -28,7 +27,7 @@
 		<!-- Header -->
 			<header id="header">
 				<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
-				<h1><strong>Club Monaco Price Monitor</strong><br />
+				<h1><strong>Price Monitor</strong><br />
 				Everyday price monitoring for clothes.
 				</h1>
 			</header>
@@ -41,7 +40,13 @@
 						<header class="major">
 							<h2>Price Trend</h2>
 						</header>
-						<p>*Data Visualization Goes Here*</p>
+						<p>
+						<div class="chart"></div>
+						<script src="http://d3js.org/d3.v3.min.js"></script>
+						<script src="js/club_monaco_price.js"></script>
+						<link rel="stylesheet" type="text/css" href="css/chart.css">
+
+						</p>
 						<!--<ul class="actions">-->
 							<!--<li><a href="#" class="button">Learn More</a></li>-->
 						<!--</ul>-->
